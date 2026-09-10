@@ -98,7 +98,7 @@ class PeakLoadEngine:
         results, peaks = [], []
         for i, dt in enumerate(future_dates):
             pred_val = float(predictions[i])
-            is_peak = pred_val > self.threshold
+            is_peak = bool(pred_val > self.threshold)
             severity = "NORMAL"
             if is_peak:
                 severity = "CRITICAL" if pred_val > self.threshold * 1.15 else "HIGH"
@@ -350,5 +350,5 @@ def serve_frontend():
     return HTMLResponse(content=html_content)
 
 if __name__ == "__main__":
-      uvicorn.run(app, host="0.0.0.0", port=8000)
-   
+    uvicorn.run(app, host="0.0.0.0", port=8001)
+    
